@@ -1,130 +1,101 @@
 ---
-name: swiss-editorial-poster-skill
-description: Generate a Simplified-Chinese 9:16 poster in the 「瑞士编辑」(swiss-editorial) style by 一张有戏. Use when the user wants a 瑞士编辑 / swiss editorial poster.
+name: swiss-editorial-poster
+description: 瑞士编辑海报：以严格网格、不对称与现代编辑克制，做一张字体主导的精炼海报。根据【主标题】【短句】【场景】【版式】【主色强调】【画幅】生成一张简体中文海报。当用户提到「瑞士编辑 / Swiss Editorial / 网格编辑海报」时使用。 Use when the user asks for a Swiss editorial, grid typography poster, International Typographic Style poster — produces one poster with only three visible Chinese lines: headline, supporting line, and footer「一张有戏 · 视觉习作」.
+license: MIT
 ---
 
-# 瑞士编辑 · swiss-editorial poster skill
+# 瑞士编辑 · Swiss Editorial Poster
 
-一张有戏「瑞士编辑」风格海报技能。输出一张 9:16 竖版、简体中文的独立海报。
+以严格网格、不对称与现代编辑克制，做一张字体主导的精炼海报。
+A refined typography-led poster with strict grid discipline, asymmetry, clarity, and modern editorial restraint.
 
-## 用法
-1. 确定一个主标题（2–4 字）和一句短句。
-2. 画面只出现三段文字：主标题、短句、页脚「一张有戏 · 视觉习作」。
-3. 版式可选：big-type-only, editorial-column。
-4. 参照下方完整提示词模板，替换 Headline / Supporting phrase / 场景描述。
+## 输入 · Inputs
 
-## 示例主题
-- 字间：几何字形的节奏与间距（editorial-column）— Large precisely spaced Chinese glyphs with one cobalt rectangle, hairline baseline guides, white ground, optical scale contrast.
-- 声场：让声音拥有清晰的形状（big-type-only）— One cropped monochrome loudspeaker cone with a single red line tracing acoustic rhythm, rigid asymmetric grid.
-- 城市切面：在楼影之间看见秩序（editorial-column）— One high contrast black-and-white architectural facade crop, narrow orange vertical type column, austere grid.
-- 时间刻度：把流动分成可见的片段（big-type-only）— A large cropped clean black clock dial segment without digits or branding, precise cobalt circular rule and quiet white space.
-- 纸上秩序：留白也是结构的一部分（editorial-column）— One folded white paper plane under crisp side shadow, asymmetrical black Chinese large type, one red thin rule.
-- 留白练习：让目光有一处停留（big-type-only）— Almost no imagery, outsized black Chinese type in lower-left and a small cobalt square upper-right, meaningful optical tension.
-- 节奏：让重复产生新的方向（editorial-column）— Unequal repeated black parallel bars disrupted once by a red bar, disciplined alignment and huge headline.
-- 看见结构：从一根线开始建立关系（big-type-only）— Minimal axonometric black line architectural stair fragment over white, small cobalt crop and strict title column.
-
-## 完整提示词模板（第 1 张原文）
 ```
-Use case: ads-marketing. Create exactly ONE polished professional 9:16 portrait poster, static flat artwork, Chinese-mainland cultural/creative studio portfolio concept.
-Language: Simplified Chinese. Headline: 字间. Supporting phrase: 几何字形的节奏与间距. Tiny plain footer: 一张有戏 · 视觉习作. Exact visible text ONLY these three phrases, every character correctly formed. No English, random numbers, fake events, dates, addresses, awards, offers, prices, affiliations, calls to action or status labels. All content is fictional/conceptual creative brief, no real client claim.
+【主标题】：
+【短句】：
+【场景】：
+【版式】：（big-type-only / editorial-column，缺省 editorial-column）
+【主色强调】：（红 / cobalt / acid green / orange（选一））
+【画幅】：9:16（默认）
+```
 
-SOURCE UNIVERSAL RULES:
+**缺失字段不要追问**：只给了主标题（或部分字段）时，由你根据主标题自行补全其余字段，并保证场景、版式、主色强调彼此协调、指向同一概念。画幅缺省为 9:16。
+If any field is missing, fill it yourself coherently from the headline — never ask. Default aspect ratio 9:16.
 
+## 使用方法 · How to use
+1. 读取输入，补全缺失字段（内部完成，不输出分析）。
+2. 按下方核心规则 + [prompt.md](prompt.md) 组合提示词，交给图像生成工具，**只输出一张**海报。
+3. 若当前环境不能生图，输出下方「可直接粘贴的最终提示词」，已填好字段，供用户粘贴到 ChatGPT / 其他图像模型。
 
-These rules apply to every poster. Do not repeat them in layout or style notes.
+示例输入见 [examples/themes.md](examples/themes.md)。
 
-- Build around one dominant message, one clear focal point, and one communication goal.
-- Establish a simple reading order: headline -> focal image -> supporting copy -> supplied details.
-- Preserve required copy exactly unless the user explicitly asks for rewriting.
-- Keep important text readable, high-contrast, and inside safe margins.
-- Use confident spacing and avoid overstuffed layouts.
-- Avoid fake extra text, random logos, QR codes, decorative clutter, malformed typography, and generic AI-poster noise.
-- Treat the poster canvas as static print/editorial artwork rather than a clickable interface. If the source explicitly requests a product UI, browser window, dashboard, or device mockup, preserve that depicted content inside the poster.
-- CTA copy is extractive-only: include it only when the source explicitly supplies the wording. When output language differs, verify the translated CTA against a recorded exact source quote. Never invent action or status labels.
-- If no CTA is sourced, leave the action area empty. If one is sourced, render it as ordinary poster typography in a footer or text lockup. Do not place poster-level action copy inside a button, rounded rectangle, pill, chip, capsule, tab, input field, or any other clickable-looking UI container; do not decorate it with a shadow, arrow, chevron, or cursor icon.
+## 核心规则 · Core rules
 
-
-
-SELECTED STYLE — STRICTLY THIS VISUAL SYSTEM, DO NOT MIX OTHER STYLES:
-# Swiss Editorial
-
-## Intent
-
+### 目标 · Intent
+以严格网格、不对称与现代编辑克制，做一张字体主导的精炼海报。
 Create a refined, typography-led poster with strict grid discipline, asymmetry, clarity, and modern editorial restraint.
 
-## Typography
-
+### 字体 · Typography
 - Use clean neo-grotesk or grotesk sans-serif direction.
 - Favor strong scale contrast: oversized headline, compact metadata.
 - Use left alignment, asymmetric placement, and disciplined baseline rhythm.
 - Avoid decorative fonts and excessive type effects.
 
-## Palette
+### 配色 · Palette
+- Neutral base: white, warm white, black, charcoal, gray. Add one precise accent such as red, cobalt, acid green, or orange.
+- 【主色强调】只取一个精确强调色，不要彩虹堆砌。
 
-Neutral base: white, warm white, black, charcoal, gray. Add one precise accent such as red, cobalt, acid green, or orange.
+### 意象 · Imagery
+- Use one restrained image, abstract crop, simple object, or no image. Imagery should support the typographic grid, not dominate it.
+- 【场景】描述应支撑字体与版式，不要喧宾夺主（除非风格本身以主体物件为第一阅读）。
 
-## Imagery
+### 质感 · Texture / Material
+- Mostly clean matte paper or subtle print grain. Keep surface treatment minimal.
 
-Use one restrained image, abstract crop, simple object, or no image. Imagery should support the typographic grid, not dominate it.
-
-## Texture / Material
-
-Mostly clean matte paper or subtle print grain. Keep surface treatment minimal.
-
-## Composition Rules
-
+### 构图 · Composition
 - Use visible or implied grid columns.
 - Keep text blocks aligned and intentional.
 - Use rules, numbers, or small labels sparingly.
+- 版式从该风格允许的布局中选择：`big-type-only / editorial-column`；缺省 `editorial-column`。
+- 单一焦点、清晰阅读顺序：主标题 → 焦点画面 → 短句 → 页脚。
 
-## Avoid
+### 文字锁定 · Text lock（一张有戏）
+- 画面可见文字**只有三行**：【主标题】、【短句】、页脚「一张有戏 · 视觉习作」。
+- 简体中文；每个字正确成形；不要英文乱码、假活动、假日期、假地址、假奖项、假价格、假 CTA、假品牌。
+- 不要按钮/圆角胶囊/UI 容器；页脚就是普通小字排印。
 
-Centered generic flyer layouts, random decoration, too many colors, fake Swiss clichés, illegible tiny type, and cluttered backgrounds.
+### 避免 · Avoid
+- Centered generic flyer layouts, random decoration, too many colors, fake Swiss clichés, illegible tiny type, and cluttered backgrounds.
+- 额外假字、随机 logo、二维码、装饰堆砌、畸形字体、通用 AI 海报噪声、水印、UI。
 
+### 执行 · Execution
+不提问、不展示分析、不出多版本，直接输出一张海报。
 
-INTERNAL COMPOSITION:
-# Editorial Column
+## 可直接粘贴的最终提示词 · Ready-to-paste prompt template
 
-## Composition Structure
-
-- Use one large typographic area and one narrower supporting column.
-- Create asymmetric balance with image, negative space, or rule lines.
-- Place metadata in a disciplined column or margin note.
-- Let the layout feel like a high-end magazine page converted into a poster.
-
-## Hierarchy Rules
-
-1. Large headline or image creates first read.
-2. Column copy provides context.
-3. Source-supplied metadata sits in a small typographic lockup. Source-supplied action copy may appear only as plain text.
-
-## Text Placement
-
-- Use strong alignment and column widths.
-- Keep body copy brief and readable.
-- Use margins intentionally, including large empty zones.
-
-## Image Treatment
-
-Use editorial photography, cropped object, art detail, or abstract field.
-
-## Spacing Rules
-
-Whitespace is an active design element. Avoid filling the entire page.
-
-## Aspect-Ratio Behavior
-
-Best in `2:3`, `3:4`, `4:5`, and `16:9`. In square, use one dominant column and one compact side note.
-
-## Avoid
-
-Centered brochure layouts, generic event flyer structure, too many font styles, and long body copy.
-
-
-SPECIFIC SUBJECT AND ART DIRECTION:
-Large precisely spaced Chinese glyphs with one cobalt rectangle, hairline baseline guides, white ground, optical scale contrast.
-
-Quality: exquisite thoughtful art direction, one immediate focal point, sophisticated typographic spacing and clear reading order, original expressive composition with wide enough safe margins. Headline large and readable at phone thumbnail; secondary text restrained, not generic template. Typography adapted sensitively to real Chinese glyphs, with the visual weight demanded by style. Material/light/print treatment consistent with selected style. If any person appears, fictional mainland Chinese adult, natural anatomy and authentic face; otherwise no people. All props physically coherent unless the SPECIFIC surreal idea deliberately changes physics. No trademarks or label text on products, no fake logos/watermarks/QR. No poster mockup, wall frame, multiple-poster collage, UI buttons or decorative website components. The creative theme must determine composition; vary crop, hierarchy and negative space across the series. Output one finished poster only.
 ```
+【主标题】：{{主标题}}
+【短句】：{{短句}}
+【场景】：{{场景}}
+【版式】：{{版式，缺省 editorial-column；可选 big-type-only / editorial-column}}
+【主色强调】：{{主色强调}}
+【画幅】：{{画幅，默认 9:16}}
 
-全部 8 条提示词见 `PROMPTS.json`，来源见 `SOURCES.md`。
+Create exactly ONE polished professional {{画幅，默认 9:16}} portrait poster, static flat artwork, Chinese-mainland cultural/creative studio portfolio concept.
+Language: Simplified Chinese. Headline: {{主标题}}. Supporting phrase: {{短句}}. Tiny plain footer: 一张有戏 · 视觉习作. Exact visible text ONLY these three phrases, every character correctly formed. No English clutter, random numbers, fake events, dates, addresses, awards, offers, prices, affiliations, calls to action or status labels. All content is fictional/conceptual creative brief, no real client claim.
+If any field above is empty, fill it coherently from 【主标题】 so scene, accent and layout support one clear idea — do not ask questions.
+
+SELECTED STYLE — STRICTLY THIS VISUAL SYSTEM, DO NOT MIX OTHER STYLES:
+# Swiss Editorial
+Intent: Create a refined, typography-led poster with strict grid discipline, asymmetry, clarity, and modern editorial restraint.
+Typography: Use clean neo-grotesk or grotesk sans-serif direction. Favor strong scale contrast: oversized headline, compact metadata. Use left alignment, asymmetric placement, and disciplined baseline rhythm. Avoid decorative fonts and excessive type effects.
+Palette: Neutral base: white, warm white, black, charcoal, gray. Add one precise accent such as red, cobalt, acid green, or orange. Use exactly one precise accent from 【主色强调】.
+Imagery: Use one restrained image, abstract crop, simple object, or no image. Imagery should support the typographic grid, not dominate it. Scene direction: {{场景}}.
+Texture / Material: Mostly clean matte paper or subtle print grain. Keep surface treatment minimal.
+Composition: Use visible or implied grid columns. Keep text blocks aligned and intentional. Use rules, numbers, or small labels sparingly. Use layout {{版式，缺省 editorial-column}} from allowed set (big-type-only / editorial-column). One dominant message, one focal point; reading order headline -> focal image -> supporting copy -> footer. Confident spacing; no overstuffed layout; no UI buttons/pills for the footer.
+
+Avoid: Centered generic flyer layouts, random decoration, too many colors, fake Swiss clichés, illegible tiny type, and cluttered backgrounds. Also avoid fake extra text, logos, QR codes, decorative clutter, malformed typography, generic AI-poster noise, watermarks, UI chrome.
+
+Do not ask questions. Do not show analysis or alternatives. Output the single finished poster only.
+```
